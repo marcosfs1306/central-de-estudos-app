@@ -1,54 +1,74 @@
-<!-- TELA 2: PAINEL DE ESTUDOS (DASHBOARD) -->
-<div id="viewDashboard" class="hidden">
-  
-  <!-- Cabeçalho Superior -->
-  <header class="dashboard-header">
-    <div class="user-info">
-      <h2 class="logo">Central de Estudos</h2>
-      <p id="userGreeting">Olá, Carregando...</p>
-    </div>
-    <div class="header-actions">
-      <span id="planBadge" class="badge free">FREE</span>
-      <button id="btnSair" class="btn-outline">Sair</button>
-    </div>
-  </header>
-
-  <!-- Corpo Principal do App -->
-  <main class="dashboard-grid">
-    
-    <!-- Bloco 1: A Roleta / Cronômetro -->
-    <section class="card roleta-card">
-      <h3>Ciclo Atual (Método Meirelles)</h3>
-      <div class="materia-destaque">
-        <span class="label">Estudar Agora:</span>
-        <h4 id="materiaAtualDisplay">Selecione uma matéria...</h4>
-      </div>
-      <div class="cronometro-container">
-        <h1 id="tempoDisplay">00:00:00</h1>
-        <div class="botoes-cronometro">
-          <button id="btnPlay" class="btn-primary">▶ Iniciar</button>
-          <button id="btnStop" class="btn-success">✔ Finalizar Bloco</button>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Estudos</title>
+    <!-- Ligação corrigida ao ficheiro CSS (na mesma raiz) -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonte profissional (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- TELA DE LOGIN -->
+    <div id="auth-container" class="container">
+        <div class="card auth-card">
+            <h2>Central de Estudos</h2>
+            <p>Faça login para gerir o seu ciclo</p>
+            <button id="btnLoginGoogle" class="btn btn-google">Entrar com o Google</button>
         </div>
-      </div>
-    </section>
+    </div>
 
-    <!-- Bloco 2: Gestão de Matérias -->
-    <section class="card matérias-card">
-      <h3>Disciplinas do Edital</h3>
-      <form id="formMateria" class="form-row">
-        <input type="text" id="nomeMateria" placeholder="Ex: Direito Constitucional" required>
-        <select id="pesoMateria" required>
-          <option value="" disabled selected>Peso</option>
-          <option value="1">Peso 1</option>
-          <option value="2">Peso 2</option>
-          <option value="3">Peso 3</option>
-        </select>
-        <button type="submit" class="btn-primary">+</button>
-      </form>
-      
-      <!-- Lista onde as matérias vão aparecer -->
-      <ul id="listaMaterias" class="lista-materias"></ul>
-    </section>
+    <!-- TELA PRINCIPAL DO APP (Oculta até fazer login) -->
+    <div id="app-container" class="container hidden">
+        <header class="header">
+            <h1>Central de Estudos</h1>
+            <div class="user-info">
+                <span id="userName">Olá, Carregando...</span>
+                <span class="badge">FREE</span>
+                <button id="btnSair" class="btn btn-outline">Sair</button>
+            </div>
+        </header>
 
-  </main>
-</div>
+        <main class="grid-layout">
+            <!-- Bloco 1: Ciclo Atual (Meirelles) -->
+            <section class="card">
+                <h2>Ciclo Atual (Método Meirelles)</h2>
+                <div class="cycle-info">
+                    <p>Estudar Agora:</p>
+                    <h3 id="materiaAtual">Selecione uma matéria...</h3>
+                </div>
+                
+                <div class="timer-container">
+                    <h2 id="cronometro">00:00:00</h2>
+                    <div class="timer-actions">
+                        <button id="btnIniciar" class="btn btn-primary">▶ Iniciar</button>
+                        <button id="btnFinalizar" class="btn btn-success" disabled>✔ Finalizar Bloco</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bloco 2: Gestão do Edital -->
+            <section class="card">
+                <h2>Disciplinas do Edital</h2>
+                <form id="formMateria" class="form-row">
+                    <input type="text" id="nomeMateria" placeholder="Ex: Direito Constitucional" required>
+                    <select id="pesoMateria" required>
+                        <option value="" disabled selected>Peso</option>
+                        <option value="1">Peso 1</option>
+                        <option value="2">Peso 2</option>
+                        <option value="3">Peso 3</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">+</button>
+                </form>
+                <ul id="listaMaterias" class="item-list">
+                    <!-- As matérias inseridas aparecerão aqui -->
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- Ligação corrigida ao JavaScript (type="module" é obrigatório para o Firebase moderno) -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
